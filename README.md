@@ -1,2 +1,0 @@
-# QuizMaster
-A Quizzing Application
