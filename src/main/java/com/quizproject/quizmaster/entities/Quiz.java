@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a Quiz
@@ -24,7 +25,7 @@ public class Quiz {
 
     private String title;
 
-    @OneToMany(mappedBy = "quiz")
-    private List<Question> questions;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
+    private Set<Question> questions;
 
 }

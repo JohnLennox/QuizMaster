@@ -1,5 +1,6 @@
 package com.quizproject.quizmaster.entities;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class Answer {
 
@@ -21,7 +23,7 @@ public class Answer {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
+//    @JoinColumn(name = "question_id")
     private Question question;
 
     private String answerText;

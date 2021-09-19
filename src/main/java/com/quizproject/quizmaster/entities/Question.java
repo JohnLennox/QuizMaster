@@ -1,11 +1,13 @@
 package com.quizproject.quizmaster.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a Question in a Quiz
@@ -13,6 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 public class Question {
 
@@ -23,10 +26,9 @@ public class Question {
     private String questionText;
 
     @ManyToOne
-    @JoinColumn(name ="quiz_id", nullable = false)
     private Quiz quiz;
 
-    @OneToMany(mappedBy = "question")
-    private List<Answer> answers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    private Set<Answer> answers;
 
 }
