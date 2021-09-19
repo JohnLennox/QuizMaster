@@ -23,7 +23,6 @@ public class Answer {
     private Long id;
 
     @ManyToOne
-//    @JoinColumn(name = "question_id")
     private Question question;
 
     private String answerText;
