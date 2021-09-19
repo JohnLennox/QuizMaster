@@ -17,15 +17,14 @@ import java.util.List;
 @Builder
 @Entity
 public class Quiz {
+
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "quiz_id")
+    @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 
 }

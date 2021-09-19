@@ -15,14 +15,15 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class Answer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false)
+    private Question question;
 
     private String answerText;
     private Boolean correctAnswer;
-
-
 }

@@ -15,14 +15,18 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Question {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
+
     private String questionText;
 
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(name = "question_id")
+    @ManyToOne
+    @JoinColumn(name ="quiz_id", nullable = false)
+    private Quiz quiz;
+
+    @OneToMany(mappedBy = "question")
     private List<Answer> answers;
 
 }
