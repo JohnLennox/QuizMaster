@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Represents the answer to a Question in a Quiz
@@ -27,4 +26,19 @@ public class Answer {
 
     private String answerText;
     private Boolean correctAnswer;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Answer answer = (Answer) o;
+
+        return id != null ? id.equals(answer.id) : answer.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }
