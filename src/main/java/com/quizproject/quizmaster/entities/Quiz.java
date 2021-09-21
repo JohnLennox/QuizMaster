@@ -25,7 +25,7 @@ public class Quiz {
 
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "quiz_id")
     private Set<Question> questions = new HashSet<>();
 
