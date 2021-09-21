@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents a Quiz
@@ -17,8 +18,8 @@ import java.util.List;
 @Builder
 @Entity
 public class Quiz {
+
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -26,6 +27,20 @@ public class Quiz {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "quiz_id")
-    private List<Question> questions;
+    private Set<Question> questions = new HashSet<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Quiz quiz = (Quiz) o;
+
+        return id != null ? id.equals(quiz.id) : quiz.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }
