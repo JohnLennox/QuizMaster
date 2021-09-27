@@ -4,6 +4,7 @@ import com.quizproject.quizmaster.dto.QuizDTO;
 import com.quizproject.quizmaster.dto.mappers.QuizDtoMapper;
 import com.quizproject.quizmaster.exception.QuizNotFoundException;
 import com.quizproject.quizmaster.repositories.QuizRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,14 +15,11 @@ import java.util.List;
 @Service
 public class QuizService{
 
-    private final QuizRepository repository;
+    @Autowired
+    private  QuizRepository repository;
 
-    private final QuizDtoMapper mapper;
-
-    public QuizService(QuizDtoMapper mapper, QuizRepository repository) {
-        this.mapper = mapper;
-        this.repository = repository;
-    }
+    @Autowired
+    private  QuizDtoMapper mapper;
 
     public List<QuizDTO> getAllQuizzes() {
         var quizzes =  repository.findAll();
