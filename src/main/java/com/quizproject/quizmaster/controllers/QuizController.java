@@ -10,14 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/quiz")
 public class QuizController {
-    public static final String BASE = "/quiz";
     private final QuizRepository quizRepository;
     private final QuizDtoMapper mapper;
 
@@ -26,7 +27,7 @@ public class QuizController {
         this.mapper = new QuizDtoMapperImpl();
     }
 
-    @GetMapping(BASE + "/all")
+    @GetMapping("/all")
     public List<QuizDTO> getAll(){
         var quizzes = new ArrayList<QuizDTO>();
         for(Quiz quiz : quizRepository.findAll()){
@@ -35,7 +36,7 @@ public class QuizController {
         return quizzes;
     }
 
-    @GetMapping(BASE + "/findById/{id}")
+    @GetMapping("/findById/{id}")
     public ResponseEntity<QuizDTO> findById(@PathVariable Long id){
         var quiz = quizRepository.findById(id);
         if (quiz.isPresent()) {
