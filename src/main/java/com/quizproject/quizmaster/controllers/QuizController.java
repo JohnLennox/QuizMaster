@@ -42,6 +42,6 @@ public class QuizController {
         if (quiz.isPresent()) {
             return new ResponseEntity<>(mapper.quizToDTO(quiz.get()), HttpStatus.OK);
         }
-        throw new QuizNotFoundException(HttpStatus.NOT_FOUND, "Quiz with ID: " +id + " not found", null);
+        throw new QuizNotFoundException(HttpStatus.NOT_FOUND, "Quiz with ID: ".concat(id.toString()).concat(" not found"), null);
     }
 }

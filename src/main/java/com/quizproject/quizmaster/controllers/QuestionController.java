@@ -1,6 +1,5 @@
 package com.quizproject.quizmaster.controllers;
 
-import com.quizproject.quizmaster.dto.AnswerDTO;
 import com.quizproject.quizmaster.dto.QuestionDTO;
 import com.quizproject.quizmaster.dto.mappers.QuestionDtoMapper;
 import com.quizproject.quizmaster.dto.mappers.QuestionDtoMapperImpl;
