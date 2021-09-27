@@ -2,7 +2,9 @@ package com.quizproject.quizmaster.dto.mappers;
 
 import com.quizproject.quizmaster.dto.QuestionDTO;
 import com.quizproject.quizmaster.entities.Question;
+import org.springframework.stereotype.Component;
 
+@Component
 public class QuestionDtoMapperImpl implements QuestionDtoMapper{
     public QuestionDTO questionToDto(Question question){
         return QuestionDTO.builder()

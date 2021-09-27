@@ -1,7 +1,7 @@
 package com.quizproject.quizmaster.service;
 
 import com.quizproject.quizmaster.dto.AnswerDTO;
-import com.quizproject.quizmaster.dto.mappers.AnswerDtoMapper;
+import com.quizproject.quizmaster.dto.mappers.AnswerDtoMapperImpl;
 import com.quizproject.quizmaster.repositories.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class AnswerService {
     private AnswerRepository answerRepository;
 
     @Autowired
-    private AnswerDtoMapper mapper;
+    private AnswerDtoMapperImpl mapper;
 
     public List<AnswerDTO> getAllAnswers() {
         var answers = new ArrayList<AnswerDTO>();
