@@ -12,7 +12,6 @@ import org.springframework.lang.Nullable;
 @AllArgsConstructor
 public class QuizDTO {
 
-    @Nullable
     private Long id;
 
     @Nullable
