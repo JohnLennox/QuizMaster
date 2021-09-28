@@ -5,14 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
-public class QuizNotFoundException extends NestedRuntimeException {
+public class QuizException extends NestedRuntimeException {
 
     private final int status;
 
     @Nullable
     private final String reason;
 
-    public QuizNotFoundException(HttpStatus status, @Nullable String reason, @Nullable Throwable cause) {
+    public QuizException(HttpStatus status, @Nullable String reason, @Nullable Throwable cause) {
         super((String)null, cause);
         Assert.notNull(status, "HttpStatus is required");
         this.status = status.value();

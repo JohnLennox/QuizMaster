@@ -2,7 +2,7 @@ package com.quizproject.quizmaster.service;
 
 import com.quizproject.quizmaster.dto.QuizDTO;
 import com.quizproject.quizmaster.dto.mappers.QuizDtoMapper;
-import com.quizproject.quizmaster.exception.QuizNotFoundException;
+import com.quizproject.quizmaster.exception.QuizException;
 import com.quizproject.quizmaster.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +34,6 @@ public class QuizService{
         if (quiz.isPresent()) {
             return new ResponseEntity<>(mapper.quizToDTO(quiz.get()), HttpStatus.OK);
         }
-        throw new QuizNotFoundException(HttpStatus.NOT_FOUND, "Quiz with ID: ".concat(id.toString()).concat(" not found"), null);
+        throw new QuizException(HttpStatus.NOT_FOUND, "Quiz with ID: ".concat(id.toString()).concat(" not found"), null);
     }
 }
