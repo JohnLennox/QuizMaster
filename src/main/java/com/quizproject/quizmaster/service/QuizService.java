@@ -2,7 +2,7 @@ package com.quizproject.quizmaster.service;
 
 import com.quizproject.quizmaster.dto.QuizDTO;
 import com.quizproject.quizmaster.dto.mappers.QuizDtoMapper;
-import com.quizproject.quizmaster.exception.QuizNotFoundException;
+import com.quizproject.quizmaster.exception.QuizException;
 import com.quizproject.quizmaster.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,27 +13,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class QuizService{
+public class QuizService {
 
-    @Autowired
-    private  QuizRepository repository;
+    private final QuizRepository repository;
 
-    @Autowired
-    private  QuizDtoMapper mapper;
+    private final QuizDtoMapper mapper;
+
+    public QuizService(QuizRepository repository, QuizDtoMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     public List<QuizDTO> getAllQuizzes() {
-        var quizzes =  repository.findAll();
+        var quizzes = repository.findAll();
         var quizDtos = new ArrayList<QuizDTO>();
 
         quizzes.forEach(quiz -> quizDtos.add(mapper.quizToDTO(quiz)));
         return quizDtos;
     }
 
-    public ResponseEntity<QuizDTO> findById(Long id) {
+    public ResponseEntity<QuizDTO> findById(Long id) throws QuizException{
         var quiz = repository.findById(id);
         if (quiz.isPresent()) {
             return new ResponseEntity<>(mapper.quizToDTO(quiz.get()), HttpStatus.OK);
         }
-        throw new QuizNotFoundException(HttpStatus.NOT_FOUND, "Quiz with ID: ".concat(id.toString()).concat(" not found"), null);
+        throw new QuizException(HttpStatus.NOT_FOUND, "Quiz with ID: ".concat(id.toString()).concat(" not found"), null);
     }
 }

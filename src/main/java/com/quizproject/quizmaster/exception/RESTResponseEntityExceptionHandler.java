@@ -12,9 +12,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RESTResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {QuizNotFoundException.class})
+    @ExceptionHandler(value = {QuizException.class, AnswerException.class,AnswerException.class})
     protected ResponseEntity<Object> handleNotFound(RuntimeException e, WebRequest request){
         String responseBody = e.getMessage();
         return handleExceptionInternal(e,responseBody,new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
+
 }
