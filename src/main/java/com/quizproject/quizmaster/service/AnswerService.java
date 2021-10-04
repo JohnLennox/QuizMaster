@@ -15,11 +15,14 @@ import java.util.List;
 @Service
 public class AnswerService {
 
-    @Autowired
-    private AnswerRepository answerRepository;
+    private final AnswerRepository answerRepository;
 
-    @Autowired
-    private AnswerDtoMapperImpl mapper;
+    private final AnswerDtoMapperImpl mapper;
+
+    public AnswerService(AnswerRepository answerRepository, AnswerDtoMapperImpl mapper) {
+        this.answerRepository = answerRepository;
+        this.mapper = mapper;
+    }
 
     public List<AnswerDTO> getAllAnswers() {
         var answers = new ArrayList<AnswerDTO>();

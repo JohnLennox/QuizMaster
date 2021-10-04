@@ -13,23 +13,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class QuizService{
+public class QuizService {
 
-    @Autowired
-    private  QuizRepository repository;
+    private final QuizRepository repository;
 
-    @Autowired
-    private  QuizDtoMapper mapper;
+    private final QuizDtoMapper mapper;
+
+    public QuizService(QuizRepository repository, QuizDtoMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     public List<QuizDTO> getAllQuizzes() {
-        var quizzes =  repository.findAll();
+        var quizzes = repository.findAll();
         var quizDtos = new ArrayList<QuizDTO>();
 
         quizzes.forEach(quiz -> quizDtos.add(mapper.quizToDTO(quiz)));
         return quizDtos;
     }
 
-    public ResponseEntity<QuizDTO> findById(Long id) {
+    public ResponseEntity<QuizDTO> findById(Long id) throws QuizException{
         var quiz = repository.findById(id);
         if (quiz.isPresent()) {
             return new ResponseEntity<>(mapper.quizToDTO(quiz.get()), HttpStatus.OK);

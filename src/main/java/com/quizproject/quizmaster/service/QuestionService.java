@@ -14,11 +14,16 @@ import java.util.List;
 
 @Service
 public class QuestionService {
-    @Autowired
-    private QuestionRepository repository;
 
-    @Autowired
-    private QuestionDtoMapperImpl mapper;
+    private final QuestionRepository repository;
+
+
+    private final QuestionDtoMapperImpl mapper;
+
+    public QuestionService(QuestionRepository repository, QuestionDtoMapperImpl mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     public List<QuestionDTO> getAll() {
         var questions = new ArrayList<QuestionDTO>();

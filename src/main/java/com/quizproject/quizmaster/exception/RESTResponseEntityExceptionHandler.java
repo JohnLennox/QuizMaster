@@ -17,4 +17,5 @@ public class RESTResponseEntityExceptionHandler extends ResponseEntityExceptionH
         String responseBody = e.getMessage();
         return handleExceptionInternal(e,responseBody,new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
+
 }

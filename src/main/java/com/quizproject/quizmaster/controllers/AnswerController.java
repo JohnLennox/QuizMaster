@@ -15,8 +15,11 @@ import java.util.List;
 @RequestMapping("/api/v1/answer")
 public class AnswerController {
 
-    @Autowired
-    private AnswerService answerService;
+    private final AnswerService answerService;
+
+    public AnswerController(AnswerService answerService) {
+        this.answerService = answerService;
+    }
 
     @GetMapping("/")
     public List<AnswerDTO> getAll(){
@@ -25,4 +28,5 @@ public class AnswerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AnswerDTO> findById(@PathVariable Long id){return answerService.findById(id);}
+
 }

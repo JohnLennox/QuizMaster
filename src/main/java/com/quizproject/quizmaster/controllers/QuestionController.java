@@ -15,8 +15,11 @@ import java.util.List;
 @RequestMapping("/api/v1/question")
 public class QuestionController {
 
-    @Autowired
-    private QuestionService service;
+    private final QuestionService service;
+
+    public QuestionController(QuestionService service) {
+        this.service = service;
+    }
 
     @GetMapping("/")
     public List<QuestionDTO> getAll() {
